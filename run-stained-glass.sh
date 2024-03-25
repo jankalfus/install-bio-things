@@ -1,9 +1,9 @@
 #!/bin/bash
-cd $HOME/StainedGlass/
+cd ~/StainedGlass/
 eval "$(conda shell.bash hook)"
 conda activate stainedglass
 for file in \
-  $HOME/StainedGlass/data/Rca2_R5.fa 
+  ~/StainedGlass/data/Rca2_R5.fa 
 do
   samtools faidx "$file"
   filename=$(basename "$file")

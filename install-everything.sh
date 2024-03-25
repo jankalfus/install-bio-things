@@ -31,3 +31,13 @@ mkdir -p ~/repeatobserver
 wget https://raw.githubusercontent.com/celphin/RepeatOBserverV1/main/Setup_Run_Repeats.sh -O ~/repeatobserver/Setup_Run_Repeats.sh
 dos2unix ~/repeatobserver/Setup_Run_Repeats.sh
 chmod +x ~/repeatobserver/Setup_Run_Repeats.sh
+
+# trash
+conda create -y -n trash -c conda-forge -c bioconda r-base=4.1.3 zlib
+conda activate trash
+git clone https://github.com/vlothec/TRASH
+cd TRASH/
+git reset --hard cc39f01bd9be1f4bfe37f5f737a2f16dcb60e8b9
+chmod +x TRASH_install.sh
+./TRASH_install.sh
+cd ~

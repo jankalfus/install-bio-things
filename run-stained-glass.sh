@@ -1,7 +1,7 @@
 #!/bin/bash
-cd ~/StainedGlass/
 eval "$(conda shell.bash hook)"
 conda activate stainedglass
+cd ~/StainedGlass/
 for file in \
   ~/StainedGlass/data/Rca2_R5.fa 
 do

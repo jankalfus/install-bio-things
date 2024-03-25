@@ -24,7 +24,12 @@ git reset --hard v0.6
 cd ~
 
 # repeat observer
-conda create -y -n repeatobserver -c conda-forge -c bioconda r-base=4.3.1 bioconda::seqkit=2.8.0 bioconda::emboss=6.6.0 conda-forge::r-devtools=2.4.5 conda-forge::dos2unix=7.4.1
+conda create -y -n repeatobserver -c conda-forge -c bioconda \
+ r-base=4.3.1 \
+ bioconda::seqkit=2.8.0 \
+ bioconda::emboss=6.6.0 \
+ conda-forge::r-devtools=2.4.5 \
+ conda-forge::dos2unix=7.4.1
 conda activate repeatobserver
 Rscript -e "library(devtools)" -e "install_github(\"celphin/RepeatOBserverV1@465eec078d1ebb5ccdea5b354ab3e283c9937f95\")"
 mkdir -p ~/repeatobserver
@@ -40,4 +45,21 @@ cd TRASH/
 git reset --hard cc39f01bd9be1f4bfe37f5f737a2f16dcb60e8b9
 chmod +x TRASH_install.sh
 ./TRASH_install.sh
+cd ~
+
+# pcoa
+conda create -y -n pcoa -c conda-forge -c bioconda \
+ r-base=4.3.3 \
+ conda-forge::r-ggplot2=3.5.0 \
+ conda-forge::r-png=0.1_8 \
+ conda-forge::r-vegan=2.6_4 \
+ conda-forge::r-ape=5.7_1 \
+ conda-forge::r-gridextra=2.3 \
+ conda-forge::r-cowplot=1.1.3 \
+ conda-forge::r-rcolorbrewer=1.1_3 \
+ conda-forge::r-phangorn=2.11.1 \
+ conda-forge::r-phytools=2.1_1
+cd ~/Downloads
+wget https://s3.amazonaws.com/rstudio-ide-build/electron/jammy/amd64/rstudio-2024.04.0-daily-652-amd64.deb # see https://github.com/rstudio/rstudio/issues/13184
+sudo dpkg -i rstudio-2024.04.0-daily-652-amd64.deb
 cd ~

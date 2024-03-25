@@ -36,7 +36,6 @@ conda create -y -n repeatobserver -c conda-forge -c bioconda \
  bioconda::emboss=6.6.0 \
  conda-forge::r-devtools=2.4.5 \
  conda-forge::dos2unix=7.4.1
-source ~/miniconda3/etc/profile.d/conda.sh
 conda activate repeatobserver
 Rscript -e "library(devtools)" -e "install_github(\"celphin/RepeatOBserverV1@465eec078d1ebb5ccdea5b354ab3e283c9937f95\")"
 mkdir -p ~/repeatobserver
@@ -46,7 +45,6 @@ chmod +x ~/repeatobserver/Setup_Run_Repeats.sh
 
 # trash
 conda create -y -n trash -c conda-forge -c bioconda r-base=4.1.3 zlib
-source ~/miniconda3/etc/profile.d/conda.sh
 conda activate trash
 git clone https://github.com/vlothec/TRASH
 cd TRASH/

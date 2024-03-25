@@ -1,6 +1,11 @@
-# na začátku odinstalovat Rko, pokud je nainstalované
-#sudo apt purge r-base r-base-core
-# ověřit si, že skutečně nelze spustit
+#!/bin/bash
+set -e
+
+# na začátku odinstalovat Rko a RStudio, pokud jsou nainstalované
+#sudo apt purge r-base r-base-core rstudio
+# ověřit si, že skutečně nelze ani jedno spustit
+
+# pak spustit tento skript pomocí . ./install-everything.sh (ten source je důležitý, jinak nefunguje conda)
 
 cd ~
 
@@ -10,7 +15,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-py312_24.1.2-0-Linux-x86_64.
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm -rf ~/miniconda3/miniconda.sh
 ~/miniconda3/bin/conda init bash
-source ~/.bashrc
+source ~/miniconda3/etc/profile.d/conda.sh
 
 # set libmamba as the default resolver
 conda install -y -n base conda-libmamba-solver=23.12.0
@@ -31,6 +36,7 @@ conda create -y -n repeatobserver -c conda-forge -c bioconda \
  bioconda::emboss=6.6.0 \
  conda-forge::r-devtools=2.4.5 \
  conda-forge::dos2unix=7.4.1
+source ~/miniconda3/etc/profile.d/conda.sh
 conda activate repeatobserver
 Rscript -e "library(devtools)" -e "install_github(\"celphin/RepeatOBserverV1@465eec078d1ebb5ccdea5b354ab3e283c9937f95\")"
 mkdir -p ~/repeatobserver
@@ -40,6 +46,7 @@ chmod +x ~/repeatobserver/Setup_Run_Repeats.sh
 
 # trash
 conda create -y -n trash -c conda-forge -c bioconda r-base=4.1.3 zlib
+source ~/miniconda3/etc/profile.d/conda.sh
 conda activate trash
 git clone https://github.com/vlothec/TRASH
 cd TRASH/
@@ -62,5 +69,7 @@ conda create -y -n pcoa -c conda-forge -c bioconda \
  conda-forge::r-phytools=2.1_1
 cd ~/Downloads
 wget https://s3.amazonaws.com/rstudio-ide-build/electron/jammy/amd64/rstudio-2024.04.0-daily-652-amd64.deb # see https://github.com/rstudio/rstudio/issues/13184
+sudo apt -y install libssl-dev libclang-dev
+sudo apt -y --fix-broken install
 sudo dpkg -i rstudio-2024.04.0-daily-652-amd64.deb
 cd ~

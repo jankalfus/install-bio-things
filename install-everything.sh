@@ -21,3 +21,13 @@ sudo apt install -y git
 git clone https://github.com/mrvollger/StainedGlass.git
 cd StainedGlass/
 git reset --hard v0.6
+cd ~
+
+# repeat observer
+conda create -y -n repeatobserver -c conda-forge -c bioconda r-base=4.3.1 bioconda::seqkit=2.8.0 bioconda::emboss=6.6.0 conda-forge::r-devtools=2.4.5 conda-forge::dos2unix=7.4.1
+conda activate repeatobserver
+Rscript -e "library(devtools)" -e "install_github(\"celphin/RepeatOBserverV1@465eec078d1ebb5ccdea5b354ab3e283c9937f95\")"
+mkdir -p ~/repeatobserver
+wget https://raw.githubusercontent.com/celphin/RepeatOBserverV1/main/Setup_Run_Repeats.sh -O ~/repeatobserver/Setup_Run_Repeats.sh
+dos2unix ~/repeatobserver/Setup_Run_Repeats.sh
+chmod +x ~/repeatobserver/Setup_Run_Repeats.sh

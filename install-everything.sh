@@ -1,5 +1,6 @@
 # na začátku odinstalovat Rko, pokud je nainstalované
 #sudo apt purge r-base r-base-core
+# ověřit si, že skutečně nelze spustit
 
 cd ~
 
